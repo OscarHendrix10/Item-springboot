@@ -46,7 +46,7 @@ public class ItemController {
     }
 
     @PutMapping("/items/{id}")
-    Item updateOrCreate(@RequestBody Item newItem, @PathVariable Long id) {
+    Item updateOrCreate(@Valid @RequestBody Item newItem, @PathVariable Long id) {
 
         return itemRepository.findById(id)
                 .map(item -> {
