@@ -4,7 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,17 +14,19 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Persona {
-    
+public class Cuenta {
+   
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-
-  @NotBlank(message = "Nombre is mandatory")
-  private String nombre;
-  @NotBlank(message = "Apellido is mandatory")
-  private String apellido;
   
-  private int edad;
+  private String email;
 
+  private String password;
+
+  @ManyToOne
+  @JoinColumn(name = "persona_id")
+  private Persona persona;
+
+    
 }

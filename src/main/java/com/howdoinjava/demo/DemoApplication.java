@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.howdoinjava.demo.models.Item;
-import com.howdoinjava.demo.repositories.ItemRepository;
+import com.howdoinjava.demo.services.ItemServices;
 
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
@@ -16,12 +16,12 @@ public class DemoApplication implements CommandLineRunner {
 	}
 
   @Autowired
-  ItemRepository itemRepository;
+  private ItemServices itemServices;
 
   @Override
   public void run(String... args) throws Exception{
-    itemRepository.save(new Item(null, "Item 1"));
-    itemRepository.save(new Item(null, "Item 2"));
+    itemServices.saveitem(new Item(null, "Item 1"));
+    itemServices.saveitem(new Item(null, "Item 2"));
   }
 
 }

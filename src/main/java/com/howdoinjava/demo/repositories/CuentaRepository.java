@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.howdoinjava.demo.models.Item;
 
 @Repository
-public interface ItemRepository extends JpaRepository<Item, Long> {
-
+public interface CuentaRepository extends JpaRepository<Item, Long> {
+    
 }

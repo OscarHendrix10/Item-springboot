@@ -18,6 +18,7 @@ public class Item {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotBlank(message = "Name is mandatory")
+  @NotBlank
   private String name;
+  
 }
