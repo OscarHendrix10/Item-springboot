@@ -11,44 +11,46 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.howdoinjava.demo.models.Cuenta;
 import com.howdoinjava.demo.models.Persona;
-import com.howdoinjava.demo.services.PersonaServices;
+import com.howdoinjava.demo.services.CuentaServices;
 
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("persona")
-public class PersonaController {
+public class CuentaController {
     @Autowired
-    PersonaServices personaServices;
+    CuentaServices cuentaServices;
 
     @GetMapping()
-    public ArrayList<Persona> getAllItems(){
-        return (ArrayList<Persona>) personaServices.getAllPersonas();
+    public ArrayList<Cuenta> getAllItems(){
+        return (ArrayList<Cuenta>) cuentaServices.getAllCuentas();
     }
 
     @PostMapping()
-    public Persona createNew(@Valid @RequestBody Persona newPersona) {
-        return this.personaServices.savePerson(newPersona);
+    public Cuenta createNew(@Valid @RequestBody Cuenta newCuenta) {
+        return this.cuentaServices.saveCuenta(newCuenta);
     }
 
     @GetMapping(path = "{id}")
-    public Persona obtainId(@PathVariable("id") Long id){
-        return personaServices.obtainId(id);
+    public Cuenta obtainId(@PathVariable("id") Long id){
+        return cuentaServices.obtainId(id);
     }
 
     @PutMapping(path = "{id}")
-    public Persona updateOrCreate(@Valid @RequestBody Persona newPersona, @PathVariable Long id) {
-        return this.personaServices.updatePersona(newPersona, id);
+    public Cuenta updateOrCreate(@Valid @RequestBody Cuenta newCuenta, @PathVariable Long id) {
+        return this.cuentaServices.updatePersona(newCuenta, id);
     }
 
-    @DeleteMapping(path = "{id}")
+     @DeleteMapping(path = "{id}")
     public String deleteItem(@PathVariable("id") Long id){
-        boolean ok = this.personaServices.deletePersona(id);
+        boolean ok = this.cuentaServices.deleteCuenta(id);
         if(ok){
-            return "Se eliminó el persona con id " + id;
+            return "Se eliminó el cuenta con id " + id;
         }else{
-            return "No se pudo eliminar el persona con id " + id;
+            return "No se pudo eliminar el cuenta con id " + id;
         }
     }
 

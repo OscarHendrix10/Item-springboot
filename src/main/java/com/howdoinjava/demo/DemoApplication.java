@@ -5,8 +5,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.howdoinjava.demo.models.Cuenta;
 import com.howdoinjava.demo.models.Item;
 import com.howdoinjava.demo.models.Persona;
+import com.howdoinjava.demo.services.CuentaServices;
 import com.howdoinjava.demo.services.ItemServices;
 import com.howdoinjava.demo.services.PersonaServices;
 
@@ -19,16 +21,24 @@ public class DemoApplication implements CommandLineRunner {
 
   @Autowired
   private ItemServices itemServices;
+  @Autowired
   private PersonaServices personaServices;
+  @Autowired
+  private CuentaServices cuentaServices;
 
   @Override
   public void run(String... args) throws Exception{
     itemServices.saveitem(new Item(null, "Item 1"));
     itemServices.saveitem(new Item(null, "Item 2"));
 
-    personaServices.savePerson(new Persona(null, "Oscar", "Hendrix" ,19));
-    personaServices.savePerson(new Persona(null, "Cruz", "Aranda" ,39));
-    personaServices.savePerson(new Persona(null, "Ciclali", "Martinez" ,29));
+    Persona persona1 = new Persona(null, "Oscar", "Hendrix" ,19);
+    personaServices.savePerson(persona1);
+    Persona persona2 = new Persona(null, "Cruz", "Aranda" ,21);
+    personaServices.savePerson(persona2);
+
+
+    cuentaServices.saveCuenta(new Cuenta(null, "Oscar@gmail.com", "123456", persona1));
+    cuentaServices.saveCuenta(new Cuenta(null, "Cruz@gmail.com", "123456-10", persona2));
 
   }
 

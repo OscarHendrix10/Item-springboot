@@ -26,7 +26,7 @@ public class Cuenta {
 
   @ManyToOne
   @JoinColumn(name = "persona_id")
-  private Persona persona;
+  private Persona persona_id;
 
     
 }
