@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.howdoinjava.demo.Handling.ItemNotFoundException;
 import com.howdoinjava.demo.models.Cuenta;
-import com.howdoinjava.demo.models.Persona;
 import com.howdoinjava.demo.repositories.CuentaRepository;
 
 @Service

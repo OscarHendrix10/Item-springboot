@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.howdoinjava.demo.models.Cuenta;
-import com.howdoinjava.demo.models.Persona;
 import com.howdoinjava.demo.services.CuentaServices;
 
 import jakarta.validation.Valid;
