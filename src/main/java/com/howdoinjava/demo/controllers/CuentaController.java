@@ -18,7 +18,7 @@ import com.howdoinjava.demo.services.CuentaServices;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("persona")
+@RequestMapping("cuenta")
 public class CuentaController {
     @Autowired
     CuentaServices cuentaServices;
