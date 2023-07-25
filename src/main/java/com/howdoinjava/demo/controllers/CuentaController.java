@@ -2,6 +2,8 @@ package com.howdoinjava.demo.controllers;
 
 import java.util.ArrayList;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,8 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.howdoinjava.demo.models.Cuenta;
 import com.howdoinjava.demo.services.CuentaServices;
-
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("cuenta")
