@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: MiAplicacion
+server:
+  port: 8080
