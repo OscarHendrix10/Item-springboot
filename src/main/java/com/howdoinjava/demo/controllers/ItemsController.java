@@ -21,42 +21,52 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 
-@RestController
-@RequestMapping("items")
+@RestController //indica que es un controlador rest
+@RequestMapping("items") //indica la ruta de la api rest
+//indica que es un controlador de items
 @Api(tags = "Controlador de items", description = "CRUD de items en la base de datos de la aplicación")
 public class ItemsController {
     
-    @Autowired
+    @Autowired //inyecta el servicio
     ItemServices itemServices;
 
-    @GetMapping()
-    @ApiOperation("Obtener todos los items")
+    @GetMapping() //indica que es un metodo get
+    @ApiOperation("Obtener todos los items") //indica que es un metodo de la api
+    //obtiene todos los items
     public ArrayList<Item> getAllItems(){
+        //devuelve todos los items de la base de datos
         return (ArrayList<Item>) itemServices.getAllItems();
     }
 
-    @PostMapping()
-    @ApiOperation("Guarda un item nuevo en la base de datos")
+    @PostMapping() //indica que es un metodo post
+    @ApiOperation("Guarda un item nuevo en la base de datos") //indica que es un metodo de la api
+    //guarda un item nuevo en la base de datos
     public Item createNew(@Valid @RequestBody Item newItem) {
+        //guarda un item en la base de datos
         return this.itemServices.saveitem(newItem);
     }
 
-    @GetMapping(path = "{id}")
-    @ApiOperation("Obtiene un item por su id en la base de datos")
+    @GetMapping(path = "{id}") //indica que es un metodo get
+    @ApiOperation("Obtiene un item por su id en la base de datos") //indica que es un metodo de la api
+    //obtiene un item por id de la base de datos
     public Item obtainId(@PathVariable("id") Long id){
+        //devuelve un item por id o lanza una excepcion
         return itemServices.obtainId(id);
     }
 
-    @PutMapping(path = "{id}")
-    @ApiOperation("Actualiza un item por su id en la base de datos")
+    @PutMapping(path = "{id}") //indica que es un metodo put
+    @ApiOperation("Actualiza un item por su id en la base de datos") //indica que es un metodo de la api
     public Item updateOrCreate(@Valid @RequestBody Item newItem, @PathVariable Long id) {
+        //actualiza un item o lo crea si no existe
         return this.itemServices.updateItem(newItem, id);
     }
         
-
-    @DeleteMapping(path = "{id}")
-    @ApiOperation("Elimina un item por su id en la base de datos")
+    @DeleteMapping(path = "{id}") //indica que es un metodo delete
+    @ApiOperation("Elimina un item por su id en la base de datos") //indica que es un metodo de la api
     public String deleteItem(@PathVariable("id") Long id){
+        //elimina un item por id
+        //devuelve true si lo elimina
+        //devuelve false si no lo elimina
         boolean ok = this.itemServices.deleteItem(id);
         if(ok){
             return "Se eliminó el item con id " + id;

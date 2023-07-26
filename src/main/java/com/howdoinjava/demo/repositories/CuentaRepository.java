@@ -5,7 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import com.howdoinjava.demo.models.Cuenta;
 
-@Repository
+@Repository //es un repositorio
+//jpa es un repositorio que se encarga de hacer las consultas a la base de datos
 public interface CuentaRepository extends JpaRepository<Cuenta, Long> {
     
 }

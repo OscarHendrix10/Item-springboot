@@ -12,26 +12,27 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Table(name = "Persona")
+@Entity //es una entidad de la base de datos
+@Data //genera los getters y setters
+@AllArgsConstructor //genera un constructor con todos los argumentos
+@NoArgsConstructor// genera un constructor vacio
+@Table(name = "Persona") // crea la tabla en la base de datos
 public class Persona {
     
+  //atributos de la clase
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.IDENTITY) //autoincrementable
   private Long id;
 
-  @Column(nullable = false, length = 50)
-  @NotBlank(message = "Nombre is mandatory")
+  @Column(nullable = false, length = 50) // no puede ser nulo y tiene un maximo de 50 caracteres
+  @NotBlank(message = "Nombre is mandatory") //valida que no este vacio
   private String nombre;
 
-  @Column(nullable = false, length = 50)
-  @NotBlank(message = "Apellido is mandatory")
+  @Column(nullable = false, length = 50)// no puede ser nulo y tiene un maximo de 50 caracteres
+  @NotBlank(message = "Apellido is mandatory")//valida que no este vacio
   private String apellido;
   
-  @Column(nullable = false)
+  @Column(nullable = false)// no puede ser nulo
   private int edad;
 
 }
