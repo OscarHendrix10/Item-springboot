@@ -54,7 +54,9 @@ public class CuentaServices {
         //devuelve true si lo elimina
         //devuelve false si no lo elimina
         try {
-            cuentaRepository.deleteById(id);
+           Cuenta cuenta = cuentaRepository.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
+           cuenta.setStatus(false);
+           cuentaRepository.save(cuenta);
             return true;
         } catch (Exception e) {
             return false;

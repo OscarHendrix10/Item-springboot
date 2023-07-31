@@ -49,8 +49,8 @@ public class DemoApplication implements CommandLineRunner {
     personaServices.savePerson(persona2);
 
     //guarda cuentas en la base de datos
-    cuentaServices.saveCuenta(new Cuenta(null, "Oscar@gmail.com", "123456", persona1));
-    cuentaServices.saveCuenta(new Cuenta(null, "Cruz@gmail.com", "123456-10", persona2));
+    cuentaServices.saveCuenta(new Cuenta(null, "Oscar@gmail.com", "123456", persona1, true));
+    cuentaServices.saveCuenta(new Cuenta(null, "Cruz@gmail.com", "123456-10", persona2, true));
 
   }
 

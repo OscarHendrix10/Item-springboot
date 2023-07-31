@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data //genera los getters y setters
 @AllArgsConstructor //genera un constructor con todos los argumentos
 @NoArgsConstructor// genera un constructor vacio
-@Table(name = "Cuenta")// crea la tabla en la base de datos
+@Table(name = "customers")// crea la tabla en la base de datos
 public class Cuenta {
    //atributos de la clase
   @Id
@@ -26,7 +26,6 @@ public class Cuenta {
   @Column(unique = true, nullable = false)
   private Long id;
 
-  
   @Column(nullable = false, length = 50) //no puede ser nulo y tiene un maximo de 50 caracteres
   @Email //valida que sea un correo
   private String email;
@@ -38,5 +37,7 @@ public class Cuenta {
   @JoinColumn(name = "persona_id") //nombre de la columna que se va a crear en la tabla
   private Persona persona_id;
 
+  @Column(nullable = false) // no puede ser nulo
+  private boolean status;
     
 }
