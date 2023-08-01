@@ -21,14 +21,14 @@ import io.swagger.annotations.ApiOperation;
 
 
 @RestController //indica que es un controlador rest
-@RequestMapping("persona") //indica la ruta de la api rest
+@RequestMapping("person") //indica la ruta de la api rest
 //indica que es un controlador de persona
 @Api(tags = "Controlador de Persona", description = "CRUD de las personas en la base de datos de la aplicación")
 public class PersonController {
     @Autowired //inyecta el servicio
     PersonServices personServices;
 
-    @GetMapping() //indica que es un metodo get
+    @GetMapping("getAll") //indica que es un metodo get
     @ApiOperation("Obtener todos las personas") //indica que es un metodo de la api
     //obtiene todos las personas
     public ArrayList<Person> getAllpPersonas(){
@@ -36,7 +36,7 @@ public class PersonController {
         return (ArrayList<Person>) personServices.getAllPersonas();
     }
 
-    @PostMapping() //indica que es un metodo post
+    @PostMapping("add") //indica que es un metodo post
     @ApiOperation("Guarda una persona nueva en la base de datos") //indica que es un metodo de la api
     //guarda una persona nueva en la base de datos
     public Person createNew(@Valid @RequestBody Person newPersona) {
@@ -44,31 +44,31 @@ public class PersonController {
         return this.personServices.savePerson(newPersona);
     }
 
-    @GetMapping(path = "{id}") //indica que es un metodo get
+    @GetMapping(path = "get/{id}") //indica que es un metodo get
     @ApiOperation("Obtiene una persona por su id en la base de datos") //indica que es un metodo de la api
     public Person obtainId(@PathVariable("id") Long id){
         //devuelve una persona por id o lanza una excepcion
         return personServices.obtainId(id);
     }
 
-    @PutMapping(path = "{id}") // indica que es un metodo put
+    @PutMapping(path = "edit/{id}") // indica que es un metodo put
     @ApiOperation("Actualiza una persona por su id en la base de datos") //indica que es un metodo de la api
     public Person updateOrCreate(@Valid @RequestBody Person newPersona, @PathVariable Long id) {
         //actualiza una persona o la crea si no existe
         return this.personServices.updatePersona(newPersona, id);
     }
 
-    @DeleteMapping(path = "{id}") //indica que es un metodo delete
-    @ApiOperation("Elimina una persona por su id en la base de datos") //indica que es un metodo de la api
+    @DeleteMapping(path = "disable/{id}") //indica que es un metodo delete
+    @ApiOperation("deshabilita una persona por su id en la base de datos") //indica que es un metodo de la api
     public String deletePersona(@PathVariable("id") Long id){
         //elimina una persona por id
         //devuelve un mensaje de confirmacion
         //o un mensaje de error
         boolean ok = this.personServices.deletePersona(id);
         if(ok){
-            return "Se eliminó el persona con id " + id;
+            return "Se deshabilito la persona con id " + id;
         }else{
-            return "No se pudo eliminar el persona con id " + id;
+            return "No se pudo deshabilitar la persona con id " + id;
         }
     }
 
