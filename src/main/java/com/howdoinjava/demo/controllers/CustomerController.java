@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.howdoinjava.demo.models.Cuenta;
-import com.howdoinjava.demo.services.CuentaServices;
+import com.howdoinjava.demo.models.Customer;
+import com.howdoinjava.demo.services.CustomersServices;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,36 +24,36 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("cuenta") //indica la ruta de la api rest
 //indica que es un controlador de cuenta
 @Api(tags = "Controlador de cuenta", description = "CRUD de Cuenta en la base de datos de la aplicación")
-public class CuentaController {
+public class CustomerController {
     @Autowired //inyecta el servicio
-    CuentaServices cuentaServices;
+    CustomersServices customersServices;
 
     @GetMapping() //indica que es un metodo get
     @ApiOperation("Obtener todos los items") //indica que es un metodo de la api
-    public ArrayList<Cuenta> getAllcuenta(){
+    public ArrayList<Customer> getAllcuenta(){
         //devuelve todos los items de la base de datos
-        return (ArrayList<Cuenta>) cuentaServices.getAllCuentas();
+        return (ArrayList<Customer>) customersServices.getAllCuentas();
     }
 
     @PostMapping() //indica que es un metodo post
     @ApiOperation("Guarda una cuenta nueva en la base de datos") //indica que es un metodo de la api
-    public Cuenta createNew(@Valid @RequestBody Cuenta newCuenta) {
+    public Customer createNew(@Valid @RequestBody Customer newCuenta) {
         //guarda un ccuenta en la base de datos
-        return this.cuentaServices.saveCuenta(newCuenta);
+        return this.customersServices.saveCuenta(newCuenta);
     }
 
     @GetMapping(path = "{id}")//indica que es un metodo get
     @ApiOperation("Obtiene una cuenta por su id en la base de datos") //indica que es un metodo de la api
-    public Cuenta obtainId(@PathVariable("id") Long id){
+    public Customer obtainId(@PathVariable("id") Long id){
         //devuelve una cuenta por id o lanza una excepcion
-        return cuentaServices.obtainId(id);
+        return customersServices.obtainId(id);
     }
 
     @PutMapping(path = "{id}")//indica que es un metodo put
     @ApiOperation("Actualiza una cuenta por su id en la base de datos") //indica que es un metodo de la api
-    public Cuenta updateOrCreate(@Valid @RequestBody Cuenta newCuenta, @PathVariable Long id) {
+    public Customer updateOrCreate(@Valid @RequestBody Customer newCuenta, @PathVariable Long id) {
         //actualiza un item o lo crea si no existe
-        return this.cuentaServices.updatePersona(newCuenta, id);
+        return this.customersServices.updatePersona(newCuenta, id);
     }
 
     @DeleteMapping(path = "{id}")//indica que es un metodo delete
@@ -62,7 +62,7 @@ public class CuentaController {
         //elimina una cuenta por id
         //devuelve un mensaje de exito o fracaso
         //si se elimina o no
-        boolean ok = this.cuentaServices.deleteCuenta(id);
+        boolean ok = this.customersServices.deleteCuenta(id);
         if(ok){
             return "Se eliminó el cuenta con id " + id;
         }else{

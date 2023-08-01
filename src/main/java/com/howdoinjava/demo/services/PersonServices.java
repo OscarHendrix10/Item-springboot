@@ -4,46 +4,46 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.howdoinjava.demo.Handling.ItemNotFoundException;
-import com.howdoinjava.demo.models.Persona;
-import com.howdoinjava.demo.repositories.PersonaRepository;
+import com.howdoinjava.demo.models.Person;
+import com.howdoinjava.demo.repositories.PersonRepository;
 
 @Service //indica que es un servicio
-public class PersonaServices {
+public class PersonServices {
     
     @Autowired //inyecta el repositorio
-    PersonaRepository personaRepository;
+    PersonRepository personRepository;
 
     //devuelve todos lAs personas
-    public ArrayList<Persona> getAllPersonas(){
+    public ArrayList<Person> getAllPersonas(){
         //devuelve todos las personas de la base de datos
-        return (ArrayList<Persona>) personaRepository.findAll();
+        return (ArrayList<Person>) personRepository.findAll();
     }
 
     //guarda una persona
-    public Persona savePerson(Persona p){
+    public Person savePerson(Person p){
         //guarda una persona en la base de datos
-        return personaRepository.save(p);
+        return personRepository.save(p);
     }
 
     //obtiene una persona por id
-    public Persona obtainId(Long id){
+    public Person obtainId(Long id){
         //devuelve una persona por id o lanza una excepcion
         //si no lo encuentra
-        return personaRepository.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
+        return personRepository.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
     }
 
     //actualiza una persona
-    public Persona updatePersona(Persona newPersona, Long id){
+    public Person updatePersona(Person newPersona, Long id){
         //actualiza una persona o la crea si no existe
         //devuelve la persona actualizada
         //o lanza una excepcion si no lo encuentra
-        return personaRepository.findById(id)
+        return personRepository.findById(id)
         .map(item -> {
             item.setNombre(newPersona.getNombre());
-            return personaRepository.save(item);
+            return personRepository.save(item);
           }).orElseGet(() -> {
             newPersona.setId(id);
-            return personaRepository.save(newPersona);
+            return personRepository.save(newPersona);
           });
     }
     //elimina una persona
@@ -52,7 +52,7 @@ public class PersonaServices {
         //devuelve true si lo elimina
         //devuelve false si no lo elimina
         try {
-            personaRepository.deleteById(id);
+            personRepository.deleteById(id);
             return true;
         } catch (Exception e) {
             return false;

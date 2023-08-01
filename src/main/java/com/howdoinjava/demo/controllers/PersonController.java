@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.howdoinjava.demo.models.Persona;
-import com.howdoinjava.demo.services.PersonaServices;
+import com.howdoinjava.demo.models.Person;
+import com.howdoinjava.demo.services.PersonServices;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,38 +24,38 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("persona") //indica la ruta de la api rest
 //indica que es un controlador de persona
 @Api(tags = "Controlador de Persona", description = "CRUD de las personas en la base de datos de la aplicación")
-public class PersonaController {
+public class PersonController {
     @Autowired //inyecta el servicio
-    PersonaServices personaServices;
+    PersonServices personServices;
 
     @GetMapping() //indica que es un metodo get
     @ApiOperation("Obtener todos las personas") //indica que es un metodo de la api
     //obtiene todos las personas
-    public ArrayList<Persona> getAllpPersonas(){
+    public ArrayList<Person> getAllpPersonas(){
         //devuelve todos las personas de la base de datos
-        return (ArrayList<Persona>) personaServices.getAllPersonas();
+        return (ArrayList<Person>) personServices.getAllPersonas();
     }
 
     @PostMapping() //indica que es un metodo post
     @ApiOperation("Guarda una persona nueva en la base de datos") //indica que es un metodo de la api
     //guarda una persona nueva en la base de datos
-    public Persona createNew(@Valid @RequestBody Persona newPersona) {
+    public Person createNew(@Valid @RequestBody Person newPersona) {
         //guarda una persona en la base de datos
-        return this.personaServices.savePerson(newPersona);
+        return this.personServices.savePerson(newPersona);
     }
 
     @GetMapping(path = "{id}") //indica que es un metodo get
     @ApiOperation("Obtiene una persona por su id en la base de datos") //indica que es un metodo de la api
-    public Persona obtainId(@PathVariable("id") Long id){
+    public Person obtainId(@PathVariable("id") Long id){
         //devuelve una persona por id o lanza una excepcion
-        return personaServices.obtainId(id);
+        return personServices.obtainId(id);
     }
 
     @PutMapping(path = "{id}") // indica que es un metodo put
     @ApiOperation("Actualiza una persona por su id en la base de datos") //indica que es un metodo de la api
-    public Persona updateOrCreate(@Valid @RequestBody Persona newPersona, @PathVariable Long id) {
+    public Person updateOrCreate(@Valid @RequestBody Person newPersona, @PathVariable Long id) {
         //actualiza una persona o la crea si no existe
-        return this.personaServices.updatePersona(newPersona, id);
+        return this.personServices.updatePersona(newPersona, id);
     }
 
     @DeleteMapping(path = "{id}") //indica que es un metodo delete
@@ -64,7 +64,7 @@ public class PersonaController {
         //elimina una persona por id
         //devuelve un mensaje de confirmacion
         //o un mensaje de error
-        boolean ok = this.personaServices.deletePersona(id);
+        boolean ok = this.personServices.deletePersona(id);
         if(ok){
             return "Se eliminó el persona con id " + id;
         }else{

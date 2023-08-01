@@ -6,12 +6,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.howdoinjava.demo.models.Cuenta;
+import com.howdoinjava.demo.models.Customer;
 import com.howdoinjava.demo.models.Item;
-import com.howdoinjava.demo.models.Persona;
-import com.howdoinjava.demo.services.CuentaServices;
+import com.howdoinjava.demo.models.Person;
+import com.howdoinjava.demo.services.CustomersServices;
 import com.howdoinjava.demo.services.ItemServices;
-import com.howdoinjava.demo.services.PersonaServices;
+import com.howdoinjava.demo.services.PersonServices;
 
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -32,9 +32,9 @@ public class DemoApplication implements CommandLineRunner {
   @Autowired //inyecta el servicio
   private ItemServices itemServices;
   @Autowired //inyecta el servicio
-  private PersonaServices personaServices;
+  private PersonServices personServices;
   @Autowired //inyecta el servicio
-  private CuentaServices cuentaServices;
+  private CustomersServices customersServices;
 
   @Override //indica que se va a ejecutar al iniciar la aplicacion
   public void run(String... args) throws Exception{
@@ -43,14 +43,14 @@ public class DemoApplication implements CommandLineRunner {
     itemServices.saveitem(new Item(null, "Item 2"));
 
     //guarda personas en la base de datos
-    Persona persona1 = new Persona(null, "Oscar", "Hendrix" ,19);
-    personaServices.savePerson(persona1);
-    Persona persona2 = new Persona(null, "Cruz", "Aranda" ,21);
-    personaServices.savePerson(persona2);
+    Person persona1 = new Person(null, "Oscar", "Hendrix" ,19);
+    personServices.savePerson(persona1);
+    Person persona2 = new Person(null, "Cruz", "Aranda" ,21);
+    personServices.savePerson(persona2);
 
     //guarda cuentas en la base de datos
-    cuentaServices.saveCuenta(new Cuenta(null, "Oscar@gmail.com", "123456", persona1, true));
-    cuentaServices.saveCuenta(new Cuenta(null, "Cruz@gmail.com", "123456-10", persona2, true));
+    customersServices.saveCuenta(new Customer(null, "Oscar@gmail.com", "123456", persona1, true));
+    customersServices.saveCuenta(new Customer(null, "Cruz@gmail.com", "123456-10", persona2, true));
 
   }
 

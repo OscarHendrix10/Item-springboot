@@ -6,46 +6,46 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.howdoinjava.demo.Handling.ItemNotFoundException;
-import com.howdoinjava.demo.models.Cuenta;
-import com.howdoinjava.demo.repositories.CuentaRepository;
+import com.howdoinjava.demo.models.Customer;
+import com.howdoinjava.demo.repositories.CustomerRepository;
 
 @Service //indica que es un servicio
-public class CuentaServices {
+public class CustomersServices {
     @Autowired //inyecta el repositorio
-    CuentaRepository cuentaRepository;
+    CustomerRepository customerRepository;
 
     //devuelve todos las cuentas
-    public ArrayList<Cuenta> getAllCuentas(){
+    public ArrayList<Customer> getAllCuentas(){
         //devuelve todos las cuentas de la base de datos
-        return (ArrayList<Cuenta>) cuentaRepository.findAll();
+        return (ArrayList<Customer>) customerRepository.findAll();
     }
 
     //guarda una cuenta
-    public Cuenta saveCuenta(Cuenta cuenta){
+    public Customer saveCuenta(Customer cuenta){
         //guarda una cuenta en la base de datos
-        return cuentaRepository.save(cuenta);
+        return customerRepository.save(cuenta);
     }
 
     //obtiene una cuenta por id
-    public Cuenta obtainId(Long id){
+    public Customer obtainId(Long id){
         //devuelve una cuenta por id o lanza una excepcion
         //si no lo encuentra
-        return cuentaRepository.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
+        return customerRepository.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
     }
 
     //actualiza una cuenta
-    public Cuenta updatePersona(Cuenta newCuenta, Long id){
+    public Customer updatePersona(Customer newCuenta, Long id){
         //actualiza una cuenta o la crea si no existe
         //devuelve la cuenta actualizada
         //o lanza una excepcion si no lo encuentra
-        return cuentaRepository.findById(id)
+        return customerRepository.findById(id)
         .map(cuenta -> {
             cuenta.setEmail(newCuenta.getEmail());
             cuenta.setPassword(newCuenta.getPassword());
-            return cuentaRepository.save(cuenta);
+            return customerRepository.save(cuenta);
           }).orElseGet(() -> {
             newCuenta.setId(id);
-            return cuentaRepository.save(newCuenta);
+            return customerRepository.save(newCuenta);
           });
     }
     //elimina una cuenta
@@ -54,9 +54,9 @@ public class CuentaServices {
         //devuelve true si lo elimina
         //devuelve false si no lo elimina
         try {
-           Cuenta cuenta = cuentaRepository.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
+           Customer cuenta = customerRepository.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
            cuenta.setStatus(false);
-           cuentaRepository.save(cuenta);
+           customerRepository.save(cuenta);
             return true;
         } catch (Exception e) {
             return false;

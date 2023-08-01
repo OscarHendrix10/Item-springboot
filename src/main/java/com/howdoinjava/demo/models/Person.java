@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor //genera un constructor con todos los argumentos
 @NoArgsConstructor// genera un constructor vacio
 @Table(name = "person") // crea la tabla en la base de datos
-public class Persona {
+public class Person {
     
   //atributos de la clase
   @Id

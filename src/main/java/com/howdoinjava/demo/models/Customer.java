@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor //genera un constructor con todos los argumentos
 @NoArgsConstructor// genera un constructor vacio
 @Table(name = "customers")// crea la tabla en la base de datos
-public class Cuenta {
+public class Customer {
    //atributos de la clase
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,8 +34,8 @@ public class Cuenta {
   private String password;
 
   @ManyToOne //muchas cuentas pueden pertenecer a una persona
-  @JoinColumn(name = "persona_id") //nombre de la columna que se va a crear en la tabla
-  private Persona persona_id;
+  @JoinColumn(name = "person_id") //nombre de la columna que se va a crear en la tabla
+  private Person person_id;
 
   @Column(nullable = false) // no puede ser nulo
   private boolean status;
