@@ -1,9 +1,10 @@
 # Configuración de la base de datos
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/bbva
+    url: jdbc:mysql://localhost:3307/db_springboot
     username: root
     password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
 # Configuración de la aplicación
   jpa:
     hibernate:
