@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  # Servicio para tu aplicación Spring Boot
+  dockerdb:
+    image: springboot_image
+    ports:
+      - "8080:8080" # Mapea el puerto 8080 del contenedor al puerto 8080 del host
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3307/db_springboot # Cambia la configuración según tu base de datos
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    depends_on:
+      - db # Indica que este servicio depende del servicio "db"
+
+  # Servicio para la base de datos MySQL
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=db_springboot
+    ports:
+      - "3307:3306" # Mapea el puerto 3306 del contenedor al puerto 3306 del host
+    volumes:
+      - docker_volume:/var/lib/mysql # Utiliza un volumen para persistir los datos de la base de datos
+
+volumes:
+  docker_volume: # Definición del volumen
