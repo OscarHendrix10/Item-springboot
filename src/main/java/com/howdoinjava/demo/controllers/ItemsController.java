@@ -30,7 +30,7 @@ public class ItemsController {
     @Autowired //inyecta el servicio
     ItemServices itemServices;
 
-    @GetMapping() //indica que es un metodo get
+    @GetMapping("getAll") //indica que es un metodo get
     @ApiOperation("Obtener todos los items") //indica que es un metodo de la api
     //obtiene todos los items
     public ArrayList<Item> getAllItems(){
@@ -38,7 +38,7 @@ public class ItemsController {
         return (ArrayList<Item>) itemServices.getAllItems();
     }
 
-    @PostMapping() //indica que es un metodo post
+    @PostMapping("add") //indica que es un metodo post
     @ApiOperation("Guarda un item nuevo en la base de datos") //indica que es un metodo de la api
     //guarda un item nuevo en la base de datos
     public Item createNew(@Valid @RequestBody Item newItem) {
@@ -54,14 +54,14 @@ public class ItemsController {
         return itemServices.obtainId(id);
     }
 
-    @PutMapping(path = "{id}") //indica que es un metodo put
+    @PutMapping(path = "get/{id}") //indica que es un metodo put
     @ApiOperation("Actualiza un item por su id en la base de datos") //indica que es un metodo de la api
     public Item updateOrCreate(@Valid @RequestBody Item newItem, @PathVariable Long id) {
         //actualiza un item o lo crea si no existe
         return this.itemServices.updateItem(newItem, id);
     }
         
-    @DeleteMapping(path = "{id}") //indica que es un metodo delete
+    @DeleteMapping(path = "delete/{id}") //indica que es un metodo delete
     @ApiOperation("Elimina un item por su id en la base de datos") //indica que es un metodo de la api
     public String deleteItem(@PathVariable("id") Long id){
         //elimina un item por id
