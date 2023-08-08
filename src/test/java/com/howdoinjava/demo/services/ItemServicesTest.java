@@ -1,8 +1,11 @@
 package com.howdoinjava.demo.services;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.when;
 import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -15,7 +18,7 @@ import com.howdoinjava.demo.repositories.ItemRepository;
 public class ItemServicesTest {
 
     @Mock
-    private ItemRepository itemRepository;
+    ItemRepository itemRepository;
 
     @InjectMocks
     private ItemServices itemServices;
@@ -42,9 +45,7 @@ public class ItemServicesTest {
      */
     @Test
     void testGetAllItems() {
-        ArrayList <Item> items = new ArrayList<Item>();
-        items.add(item);
-        when(itemRepository.findAll()).thenReturn(items);
+        when(itemRepository.findAll()).thenReturn(List.of(item));
         assertNotNull(itemServices.getAllItems());
     }
     
