@@ -58,7 +58,7 @@ public class PersonController {
         return this.personServices.updatePersona(newPersona, id);
     }
 
-    @DeleteMapping(path = "disable/{id}") //indica que es un metodo delete
+    @DeleteMapping(path = "delete/{id}") //indica que es un metodo delete
     @ApiOperation("deshabilita una persona por su id en la base de datos") //indica que es un metodo de la api
     public String deletePersona(@PathVariable("id") Long id){
         //elimina una persona por id

@@ -46,7 +46,7 @@ public class ItemsController {
         return this.itemServices.saveitem(newItem);
     }
 
-    @GetMapping(path = "{id}") //indica que es un metodo get
+    @GetMapping(path = "get/{id}") //indica que es un metodo get
     @ApiOperation("Obtiene un item por su id en la base de datos") //indica que es un metodo de la api
     //obtiene un item por id de la base de datos
     public Item obtainId(@PathVariable("id") Long id){
@@ -54,7 +54,7 @@ public class ItemsController {
         return itemServices.obtainId(id);
     }
 
-    @PutMapping(path = "get/{id}") //indica que es un metodo put
+    @PutMapping(path = "edit/{id}") //indica que es un metodo put
     @ApiOperation("Actualiza un item por su id en la base de datos") //indica que es un metodo de la api
     public Item updateOrCreate(@Valid @RequestBody Item newItem, @PathVariable Long id) {
         //actualiza un item o lo crea si no existe

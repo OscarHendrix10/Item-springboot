@@ -205,3 +205,6 @@ docker-compose up
 
 docker-compose down
 ```
+
+## endpoints en POSTMAN
+https://crimson-station-14201.postman.co/workspace/xd~e778e8a6-fab7-45e2-8263-a499d2f702a2/collection/15050754-4203c631-6b37-43db-8bca-c9263aff4df3?action=share&creator=15050754
